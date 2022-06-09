@@ -58,9 +58,14 @@ Let's start deploying !
 
 3. Choose **Git** from the list of repositories that you can use. An example of how it would look like:
 
-![INFO](images/info-icon.png) **INFO**: *************** Screenshoots here ***************
+    ![app-sub-deploy-1](./images/acm/app-sub-deploy-1.png)
+    ![app-sub-deploy-2](./images/acm/app-sub-deploy-2.png)
 
-> ![INFO](images/info-icon.png) **INFO**: if you want to go deeper with the different options and how they work, please refer to the documentation: [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4/html-single/applications/index#managing-apps-with-git-repositories)
+    > ![INFO](images/info-icon.png) **INFO**: if you want to go deeper with the different options and how they work, please refer to the documentation: [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.4/html-single/applications/index#managing-apps-with-git-repositories)
+
+Once you click `Save`, ACM redirects you to the app dashboard, where you can see all the objects that compose the app and if they are correctly deployed.
+
+![app-sub-deploy-3](./images/acm/app-sub-deploy-3.png)
 
 ## Deploy ApplicationSets of Argo CD in ACM
 
@@ -77,6 +82,30 @@ Here you have 2 approach:
     > ![WARNING](images/warning-icon.png) **WARNING**: remember to grant your user with the [Subscription Administrator
 ](https://github.com/open-cluster-management/policy-collection#subscription-administrator) role **before** install them.
 
+If you prefer to continue with the automated approach, once **local-cluster** complies with the policies, add the clusters you want to the **all-openshift-clusters** `ClusterSet` (created by the **policy-openshift-gitops-acm-integration** policy).
+
+1. `Clusters` → `Cluster sets` → `Manage resource assignments`
+
+    ![app-set-1](./images/acm/app-set-1.png)
+
+2. In the next screen, just select thec clusters and click on `Review` and then `Save`
+
+    ![app-set-1](./images/acm/app-set-1.1.png)
+
+You can check that everything went well in two ways:
+
+1. With the command interface:
+
+    ```bash
+    argocd cluster list
+    ```
+
+2. By accessing the Argo CD web console. `Settings` → `Clusters`:
+
+    ![app-set-argo-1](./images/acm/app-set-argo-1.png)
+
+    > ![NOTE](images/note-icon.png) **NOTE**: You can see how the 2 managed clusters (highlighted in the screenshot) have been added to the list of clusters managed by Argo CD.
+
 ### Deploying Argo CD ApplicationSets from ACM web console
 
 Once we have the integration between OpenShift GitOps and ACM enabled, we can deploy `ApplicationSet`s with the ACM web console.
@@ -87,7 +116,27 @@ Let’s start deploying the ApplicationSet !
 
 2. Navigate through the different steps in the interactive form on the web console and fill in the relevant data. An example of how it would look like:
 
-    ![INFO](images/info-icon.png) **INFO**: *************** Screenshoot here ***************
+    ![app-set-deploy-1](./images/acm/app-set-deploy-1.png)
+
+3. After clicking on `Create` you should be presented with the application. To check it, we can go to the applications menu:
+
+    ![app-set-deploy-2](./images/acm/app-set-deploy-2.png)
+
+To see its evolution and if all the elements are correctly deployed in both clusters, we can do a drill down by clicking on one of them (the result is the same).
+
+![app-set-deploy-3](./images/acm/app-set-deploy-3.png)
+
+> ![INFO](images/info-icon.png) **INFO**: In this case we select the `Route` object, checking that it is deployed in both clusters and that we have direct access to the URL or even to be able to edit the `YAML` of the object itself.
+
+You can do the same with the Argo CD web console:
+
+1. General status
+
+    ![app-set-deploy-argo-1](./images/acm/app-set-deploy-argo-1.png)
+
+2. Drill down by clicking on one of the instances (one per cluster).
+
+    ![app-set-deploy-argo-2](./images/acm/app-set-deploy-argo-2.png)
 
 ### Deploying with a YAML file
 
@@ -133,4 +182,4 @@ With command line:
 oc apply -f rhacm/deploy/acm-appset.yaml
 ```
 
-Also using OpenShift web console (with the `+Add` and `Import YAML`) or `Argo CD` console or ACM web console (with the `Create application` menu).
+Also using OpenShift web console (`+Add` → `Import YAML`) or `Argo CD` web console (`+NEW APP` → `EDIT AS YAML`) or ACM web console (with the `Create application` menu).
