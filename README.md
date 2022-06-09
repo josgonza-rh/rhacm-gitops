@@ -84,6 +84,8 @@ Here you have 2 approach:
 
 If you prefer to continue with the automated approach, once **local-cluster** complies with the policies, add the clusters you want to the **all-openshift-clusters** `ClusterSet` (created by the **policy-openshift-gitops-acm-integration** policy).
 
+![grc-1](./images/acm/grc-status.png)
+
 1. `Clusters` → `Cluster sets` → `Manage resource assignments`
 
     ![app-set-1](./images/acm/app-set-1.png)
