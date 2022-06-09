@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: policies-config
+  namespace: rhacm-policies
+data: 
+  gitops-channel: stable
+  gitops-install-plan: Automatic
+  gitops-name: openshift-gitops-operator
+  gitops-source: redhat-operators
+  gitops-source-ns: openshift-marketplace
+  gitops-starting-csv: openshift-gitops-operator.v1.5.2
