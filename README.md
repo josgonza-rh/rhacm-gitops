@@ -65,7 +65,8 @@ Let's start deploying !
 
 Once you click `Save`, ACM redirects you to the app dashboard, where you can see all the objects that compose the app and if they are correctly deployed.
 
-![app-sub-deploy-3](./images/acm/app-sub-deploy-3.png)
+![app-sub-deploy-3a](./images/acm/app-sub-deploy-3a.png)
+![app-sub-deploy-3b](./images/acm/app-sub-deploy-3b.png)
 
 ## Deploy ApplicationSets of Argo CD in ACM
 
@@ -120,13 +121,16 @@ Let’s start deploying the ApplicationSet !
 
     ![app-set-deploy-1](./images/acm/app-set-deploy-1.png)
 
+    > ![NOTE](images/note-icon.png) **NOTE**: the destination namespace could be any value. It’s not necessary for the applicationset itself (but mandatory for the ACM form), so it is better to leave the value `bgdk` to avoid misinterpretation, since `bgdk` is the namespace that will generate the app deployment itself.
+
 3. After clicking on `Create` you should be presented with the application. To check it, we can go to the applications menu:
 
     ![app-set-deploy-2](./images/acm/app-set-deploy-2.png)
 
-To see its evolution and if all the elements are correctly deployed in both clusters, we can do a drill down by clicking on one of them (the result is the same).
+To see its evolution and if all the elements are correctly deployed in both clusters, we can do a drill down by clicking on its name.
 
-![app-set-deploy-3](./images/acm/app-set-deploy-3.png)
+![app-set-deploy-3a](./images/acm/app-set-deploy-3a.png)
+![app-set-deploy-3b](./images/acm/app-set-deploy-3b.png)
 
 > ![INFO](images/info-icon.png) **INFO**: In this case we select the `Route` object, checking that it is deployed in both clusters and that we have direct access to the URL or even to be able to edit the `YAML` of the object itself.
 
