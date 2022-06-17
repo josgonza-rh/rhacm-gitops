@@ -1,4 +1,4 @@
-# Demonstrate aplication deployment throught RHACM
+# Demonstrating the deployment of the application through RHACM
 
 Demo showing the 2 possible ways (at the time of writing this) to deploy GitOps based applications thanks to Red Hat Advanced Cluster Management For Kubernetes (from now on, `ACM`).
 
