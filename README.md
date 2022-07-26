@@ -87,8 +87,6 @@ If you prefer to continue with the automated approach, once **local-cluster** co
 
 > ![NOTE](images/note-icon.png) **NOTE**: The name **all-openshift-clusters** for the `ClusterSet` can be anything, as ACM [supports](https://access.redhat.com/articles/6663461) integration with non-OpenShift clusters. In this case the name is so because the `ClusterSet` will consist only of OpenShift clusters. This is so, for simplicity, since the `labelSelector` of the `Placement` object, in charge of integrating the clusters in `ArgoCD`, is based on the label with key/value "vendor=OpenShift" (label that comes out-of-the-box with any OpenShift cluster).
 
-Translated with www.DeepL.com/Translator (free version)
-
 ![grc-1](./images/acm/grc-status.png)
 
 1. `Clusters` → `Cluster sets` → `Manage resource assignments`
