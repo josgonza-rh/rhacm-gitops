@@ -26,7 +26,6 @@ spec:
                 kind: ManagedClusterSet
                 metadata:
                   name: all-openshift-clusters
-                  spec: {}
 
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
