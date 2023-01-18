@@ -2,21 +2,21 @@
 
 Demo showing the 2 possible ways (at the time of writing this) to deploy GitOps based applications thanks to Red Hat Advanced Cluster Management For Kubernetes (from now on, `ACM`).
 
-1. [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/applications/index#managing-apps-with-git-repositories): deploy resources from `Git` repositories using ACM web console built in mechanism.
+1. [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html-single/applications/index#managing-apps-with-git-repositories): deploy resources from `Git` repositories using ACM web console built in mechanism.
 
-2. [Configuring Managed Clusters for OpenShift GitOps operator and Argo CD](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/applications/index#gitops-config): registering a set of one or more ACM managed clusters to an instance of `Argo CD` an finally, deploying the application to those clusters.
+2. [Configuring Managed Clusters for OpenShift GitOps operator and Argo CD](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html-single/applications/index#gitops-config): registering a set of one or more ACM managed clusters to an instance of `Argo CD` an finally, deploying the application to those clusters.
 
-> ![INFO](images/info-icon.png) **INFO**: base in Red Hat Advanced Cluster Management for Kubernetes 2.5 and OpenShift GitOps 1.5.4 (from now on, `Argo CD`).
+> ![INFO](images/info-icon.png) **INFO**: base in Red Hat Advanced Cluster Management for Kubernetes 2.6 and OpenShift GitOps latest (from now on, `Argo CD`).
 
 ## Tool Requirements
 
 - OpenShift CLI Version >= 4.3.0 (_Needed for kustomize_)
 
-> ![TIP](images/tip-icon.png) **TIP**: you can take advantage of the [Web Terminal](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html/web_console/odc-about-web-terminal) operator and thus use only a web browser for the entire demonstration.
+> ![TIP](images/tip-icon.png) **TIP**: you can take advantage of the [Web Terminal](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/web_console/odc-about-web-terminal) operator and thus use only a web browser for the entire demonstration.
 
 ## Prerequisites
 
-- You need to [install Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd) or the [Red Hat OpenShift GitOps](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.10/html/cicd/gitops) operator (*) on your Red Hat Advanced Cluster Management for Kubernetes.
+- You need to [install Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/#1-install-argo-cd) or the [Red Hat OpenShift GitOps](https://access.redhat.com/documentation/en-us/openshift_container_platform/4.11/html/cicd/gitops) operator (*) on your Red Hat Advanced Cluster Management for Kubernetes.
 - Import one or more managed clusters.
 - The ACM [Subscription Administrator
 ](https://github.com/open-cluster-management/policy-collection#subscription-administrator) role (_If you want to leverage all the automation stuff from the policies_ :) ). You need it even if you are `cluster-admin`.
@@ -39,7 +39,7 @@ Subscriptions can point to a channel for identifying new or updated resource tem
 
 Let's start deploying !
 
-> ![WARNING](images/warning-icon.png) **User required access**: A user role that can create applications. You can only perform actions that your role is assigned. `cluster-admin` can do it but if you need more granular access review the documentation: [ACM - RBAC](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/access_control/index#role-based-access-control)
+> ![WARNING](images/warning-icon.png) **User required access**: A user role that can create applications. You can only perform actions that your role is assigned. `cluster-admin` can do it but if you need more granular access review the documentation: [ACM - RBAC](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html-single/access_control/index#role-based-access-control)
 
 1. From the ACM web console, `Applications` → `Create application` → `Subscription`
 
@@ -61,7 +61,7 @@ Let's start deploying !
     ![app-sub-deploy-1](./images/acm/app-sub-deploy-1.png)
     ![app-sub-deploy-2](./images/acm/app-sub-deploy-2.png)
 
-    > ![INFO](images/info-icon.png) **INFO**: if you want to go deeper with the different options and how they work, please refer to the documentation: [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/applications/index#managing-apps-with-git-repositories)
+    > ![INFO](images/info-icon.png) **INFO**: if you want to go deeper with the different options and how they work, please refer to the documentation: [Managing apps with Git repositories](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html-single/applications/index#managing-apps-with-git-repositories)
 
 Once you click `Save`, ACM redirects you to the app dashboard, where you can see all the objects that compose the app and if they are correctly deployed.
 
@@ -76,7 +76,7 @@ Once you click `Save`, ACM redirects you to the app dashboard, where you can see
 
 Here you have 2 approach:
 
-1. Follow step by step the official documentation: [Configuring Managed Clusters for OpenShift GitOps operator and Argo CD](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/applications/index#gitops-config)
+1. Follow step by step the official documentation: [Configuring Managed Clusters for OpenShift GitOps operator and Argo CD](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.6/html-single/applications/index#gitops-config)
 
 2. Install the [policies](rhacm/README.md) within this repo.
 
@@ -85,7 +85,7 @@ Here you have 2 approach:
 
 If you prefer to continue with the automated approach, once **local-cluster** complies with the policies, add the clusters you want to the **all-openshift-clusters** `ClusterSet` (created by the **policy-openshift-gitops-acm-integration** policy).
 
-> ![NOTE](images/note-icon.png) **NOTE**: The name **all-openshift-clusters** for the `ClusterSet` can be anything, as ACM [supports](https://access.redhat.com/articles/6663461) integration with non-OpenShift clusters. In this case the name is so because the `ClusterSet` will consist only of OpenShift clusters. This is so, for simplicity, since the `labelSelector` of the `Placement` object, in charge of integrating the clusters in `ArgoCD`, is based on the label with key/value "vendor=OpenShift" (label that comes out-of-the-box with any OpenShift cluster).
+> ![NOTE](images/note-icon.png) **NOTE**: The name **all-openshift-clusters** for the `ClusterSet` can be anything, as ACM [supports](https://access.redhat.com/articles/6968787) integration with non-OpenShift clusters. In this case the name is so because the `ClusterSet` will consist only of OpenShift clusters. This is so, for simplicity, since the `labelSelector` of the `Placement` object, in charge of integrating the clusters in `ArgoCD`, is based on the label with key/value "vendor=OpenShift" (label that comes out-of-the-box with any OpenShift cluster).
 
 ![grc-1](./images/acm/grc-status.png)
 
